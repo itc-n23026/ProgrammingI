@@ -1,19 +1,16 @@
-import calendar
+s1 = "{:>4s}{:>4s}{:>4s}{:>4s}{:>4s}\033[32m{:>4s}\033[0m\033[31m{:>4s}\033[0m".format(
+    "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
+)
+s1 += "\n"
 
-year = 2023
-month = 8
+s2 = "{:4s}".format("")
+for i in range(1, 32):
+    if i % 7 == 5:
+        s2 += "\033[32m{:>4s}\033[0m".format(str(i))
+    elif i % 7 == 6:
+        s2 += "\033[31m{:>4s}\033[0m".format(str(i))
+        s2 += "\n"
+    else:
+        s2 += "{:>4s}".format(str(i))
 
-cal = calendar.monthcalendar(year, month)
-
-days = ["月", "火", "水", "木", "金", "土", "日"]
-
-print(f"{year}年{month}月")
-print("月  火  水  木  金  土  日")
-
-for week in cal:
-    for day in week:
-        if day == 0:
-            print("   ", end=" ")
-        else:
-            print(f"{day:2} ", end=" ")
-    print()
+print(s1 + s2)
